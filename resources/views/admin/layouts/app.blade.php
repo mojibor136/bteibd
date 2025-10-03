@@ -281,20 +281,20 @@
                                 class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="studentCourse">
                                 <i class="ri-book-open-line mr-2"></i>
-                                <span class="text-[15px]">Student Courses</span>
+                                <span class="text-[15px]">Student Grade/Marks</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.student.courses.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Student Courses
+                                        <i class="ri-file-list-3-line mr-2"></i>All Student Marks
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.student.courses.create') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-add-box-line mr-2"></i>Add Student Course
+                                        <i class="ri-add-box-line mr-2"></i>Add Student Marks
                                     </a>
                                 </li>
                             </ul>
@@ -314,14 +314,14 @@
                                     <a href="{{ route('admin.pricing.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded
                    {{ request()->routeIs('admin.pricing.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Pricing Plan
+                                        <i class="ri-file-list-3-line mr-2"></i>All Pricing
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.pricing.create') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded
                    {{ request()->routeIs('admin.pricing.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-add-box-line mr-2"></i>Add Pricing Plan
+                                        <i class="ri-add-box-line mr-2"></i>Add Pricing
                                     </a>
                                 </li>
                             </ul>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class BranchManageController extends Controller
 {
@@ -197,5 +200,20 @@ class BranchManageController extends Controller
         $user->delete();
 
         return redirect()->route('admin.branches.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function toggleStatus($id)
+    {
+        $branch = User::findOrFail($id);
+        $branch->status = $branch->status === 'Active' ? 'Inactive' : 'Active';
+        $branch->save();
+
+        return redirect()->back()->with('success', 'Status updated successfully!');
+    }
+
+    public function show($id)
+    {
+        $branch = User::findOrFail($id);
+        return view('admin.branch.show', compact('branch'));
     }
 }

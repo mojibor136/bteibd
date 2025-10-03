@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Branch\BranchController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BranchManageController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // =======================
@@ -44,6 +44,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Branch CRUD
         Route::controller(BranchManageController::class)->group(function () {
             Route::get('/branches', 'index')->name('branches.index');
+            Route::get('/branches/show/{id}', 'show')->name('branches.show');
+            Route::get('/branches/work', 'work')->name('branches.work');
+            Route::patch('/branches/status/{id}', 'toggleStatus')->name('branches.status');
             Route::get('/branches/create', 'create')->name('branches.create');
             Route::post('/branches', 'store')->name('branches.store');
             Route::get('/branches/{id}/edit', 'edit')->name('branches.edit');
@@ -57,9 +60,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/students/create', 'create')->name('students.create');
             Route::post('/students', 'store')->name('students.store');
             Route::get('/students/{id}/edit', 'edit')->name('students.edit');
+            Route::get('/students/{id}/show', 'show')->name('students.show');
             Route::put('/students/{id}', 'update')->name('students.update');
             Route::delete('/students/{id}', 'destroy')->name('students.delete');
-
+            Route::patch('/students/status/{id}', 'toggleStatus')->name('students.status');
             // Reports
             Route::get('/reports/students', 'reportsStudents')->name('reports.students');
             Route::get('/reports/cgpa', 'reportsCgpa')->name('reports.cgpa');
@@ -74,6 +78,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/semesters/{id}/edit', 'edit')->name('semesters.edit');
             Route::put('/semesters/{id}', 'update')->name('semesters.update');
             Route::delete('/semesters/{id}', 'destroy')->name('semesters.delete');
+            Route::patch('/semesters/status/{id}', 'toggleStatus')->name('semesters.status');
             Route::get('/student/semesters', 'studentSemester')->name('student.semesters.index');
             Route::get('/student/semesters/create', 'studentSemesterCreate')->name('student.semesters.create');
         });
@@ -85,6 +90,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/courses', 'store')->name('courses.store');
             Route::get('/courses/{id}/edit', 'edit')->name('courses.edit');
             Route::put('/courses/{id}', 'update')->name('courses.update');
+            Route::patch('/courses/status/{id}', 'toggleStatus')->name('courses.status');
             Route::delete('/courses/{id}', 'destroy')->name('courses.delete');
             Route::get('/student/courses', 'studentCourses')->name('student.courses.index');
             Route::get('/student/courses/create', 'studentCoursesCreate')->name('student.courses.create');
@@ -98,6 +104,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/pricing/{id}/edit', 'edit')->name('pricing.edit');
             Route::put('/pricing/{id}', 'update')->name('pricing.update');
             Route::delete('/pricing/{id}', 'destroy')->name('pricing.delete');
+            Route::patch('/pricing/status/{id}', 'toggleStatus')->name('pricing.status');
         });
     });
 });
@@ -128,4 +135,4 @@ Route::prefix('branch')->name('branch.')->group(function () {
     });
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

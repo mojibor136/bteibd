@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('session'); 
             $table->string('course_name');
             $table->string('status');
-            $table->decimal('cgpa_result', 4, 2)->nullable();
+            $table->string('cgpa_result')->nullable();
             $table->string('profile_photo')->nullable();
             $table->timestamps();
         });

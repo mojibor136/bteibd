@@ -24,4 +24,8 @@ class Student extends Model
         'cgpa_result',
         'profile_photo',    
     ];
+
+    protected $casts = [
+        'date_of_birth' => 'date', 
+    ];
 }
