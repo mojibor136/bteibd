@@ -261,13 +261,13 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('admin.student.semesters.index') }}"
+                                    <a href="{{ route('admin.students.semesters.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded">
                                         <i class="ri-file-list-3-line mr-2"></i>All Student Semesters
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.student.semesters.create') }}"
+                                    <a href="{{ route('admin.students.semesters.create') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded">
                                         <i class="ri-add-box-line mr-2"></i>Add Student Semester
                                     </a>
@@ -286,13 +286,13 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('admin.student.courses.index') }}"
+                                    <a href="{{ route('admin.students.mark.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded">
                                         <i class="ri-file-list-3-line mr-2"></i>All Student Marks
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.student.courses.create') }}"
+                                    <a href="{{ route('admin.students.mark.create') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded">
                                         <i class="ri-add-box-line mr-2"></i>Add Student Marks
                                     </a>

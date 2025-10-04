@@ -146,7 +146,7 @@
                 <div class="col-span-1 md:col-span-2 mt-4 sm:mt-6">
                     <button type="submit"
                         class="w-full rounded-md bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed 
-                text-white py-2.5 text-sm sm:text-base transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]">
+                text-white py-2.5 text-sm sm:text-base transition-all duration-200">
                         Create Branch
                     </button>
                 </div>

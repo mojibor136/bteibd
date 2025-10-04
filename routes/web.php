@@ -50,7 +50,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/branches/create', 'create')->name('branches.create');
             Route::post('/branches', 'store')->name('branches.store');
             Route::get('/branches/{id}/edit', 'edit')->name('branches.edit');
-            Route::post('/branches/{id}', 'update')->name('branches.update');
+            Route::put('/branches/{id}/update', 'update')->name('branches.update');
             Route::delete('/branches/{id}', 'destroy')->name('branches.delete');
         });
 
@@ -61,13 +61,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/students', 'store')->name('students.store');
             Route::get('/students/{id}/edit', 'edit')->name('students.edit');
             Route::get('/students/{id}/show', 'show')->name('students.show');
-            Route::put('/students/{id}', 'update')->name('students.update');
+            Route::put('/students/{id}/update', 'update')->name('students.update');
             Route::delete('/students/{id}', 'destroy')->name('students.delete');
             Route::patch('/students/status/{id}', 'toggleStatus')->name('students.status');
             // Reports
             Route::get('/reports/students', 'reportsStudents')->name('reports.students');
             Route::get('/reports/cgpa', 'reportsCgpa')->name('reports.cgpa');
             Route::get('/reports/enrollment', 'reportsEnrollment')->name('reports.enrollment');
+
+            Route::get('/student/mark', 'studentMark')->name('students.mark.index');
+            Route::get('/student/mark/create', 'studentMarkCreate')->name('students.mark.create');
+            Route::post('/student/mark/store', 'studentMarkStore')->name('students.mark.store');
+            Route::delete('/student/mark/{id}', 'studentMarkDestroy')->name('students.mark.delete');
         });
 
         // Semester CRUD
@@ -79,8 +84,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::put('/semesters/{id}', 'update')->name('semesters.update');
             Route::delete('/semesters/{id}', 'destroy')->name('semesters.delete');
             Route::patch('/semesters/status/{id}', 'toggleStatus')->name('semesters.status');
-            Route::get('/student/semesters', 'studentSemester')->name('student.semesters.index');
-            Route::get('/student/semesters/create', 'studentSemesterCreate')->name('student.semesters.create');
+            Route::get('/student/semesters', 'studentSemester')->name('students.semesters.index');
+            Route::delete('/student/semesters/{id}', 'studentSemesterDestroy')->name('students.semesters.delete');
+            Route::get('/student/semesters/create', 'studentSemesterCreate')->name('students.semesters.create');
+            Route::post('/student/semesters/store', 'studentSemesterStore')->name('students.semesters.store');
         });
 
         // Course CRUD
@@ -92,8 +99,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::put('/courses/{id}', 'update')->name('courses.update');
             Route::patch('/courses/status/{id}', 'toggleStatus')->name('courses.status');
             Route::delete('/courses/{id}', 'destroy')->name('courses.delete');
-            Route::get('/student/courses', 'studentCourses')->name('student.courses.index');
-            Route::get('/student/courses/create', 'studentCoursesCreate')->name('student.courses.create');
         });
 
         // Pricing CRUD

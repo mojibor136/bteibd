@@ -11,7 +11,7 @@
             <div class="flex flex-row gap-2 mt-3 md:mt-0 w-full md:w-auto items-start sm:items-center">
                 <a href="{{ route('admin.semesters.create') }}"
                     class="flex items-center gap-2 h-10 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow font-medium transition-all duration-200">
-                    <i class="ri-add-line text-lg"></i> Semester Create
+                    <i class="ri-add-line text-lg"></i>Create Semester
                 </a>
             </div>
         </div>

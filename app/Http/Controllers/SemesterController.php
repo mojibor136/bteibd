@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Semester;
+use App\Models\Student;
+use App\Models\StudentSemester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 class SemesterController extends Controller
 {
@@ -123,5 +122,88 @@ class SemesterController extends Controller
         $semester->save();
 
         return redirect()->back()->with('success', 'Status updated successfully!');
+    }
+
+    public function studentSemester(Request $request)
+    {
+        $search = $request->input('search');
+
+        $studentSemesters = StudentSemester::with(['student', 'semester'])
+            ->when($search, function ($query, $search) {
+                $query->whereHas('student', function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('registration_no', 'like', "%{$search}%")
+                        ->orWhere('institute_name', 'like', "%{$search}%");
+                })
+                    ->orWhereHas('semester', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    });
+            })
+            ->latest()
+            ->paginate(10)
+            ->appends(['search' => $search]);
+
+        return view('admin.student.semester.index', compact('studentSemesters', 'search'));
+    }
+
+    public function studentSemesterCreate()
+    {
+        $semesters = Semester::where('status', 'Active')->get();
+        $students = Student::where('status', 'Active')->get();
+
+        return view('admin.student.semester.create', compact('semesters', 'students'));
+    }
+
+    public function studentSemesterStore(Request $request)
+    {
+        try {
+            $request->validate([
+                'student_id' => 'required|exists:students,id',
+                'semester_id' => 'required|exists:semesters,id',
+                'grade' => 'required|string|max:5',
+                'cgpa' => 'required|numeric|min:0|max:4',
+            ]);
+
+            StudentSemester::create([
+                'student_id' => $request->student_id,
+                'semester_id' => $request->semester_id,
+                'grade' => $request->grade,
+                'cgpa' => $request->cgpa,
+            ]);
+
+            return redirect()
+                ->route('admin.students.semesters.index')
+                ->with('success', 'Student semester added successfully!');
+        } catch (\ValidationException $e) {
+            return redirect()
+                ->back()
+                ->withErrors($e->validator)
+                ->withInput();
+        } catch (\Exception $e) {
+            \Log::error('Student Semester Store Error: '.$e->getMessage());
+
+            return redirect()
+                ->back()
+                ->with('error', 'Something went wrong while saving the student semester.')
+                ->withInput();
+        }
+    }
+
+    public function studentSemesterDestroy($id)
+    {
+        try {
+            $studentSemester = StudentSemester::findOrFail($id);
+            $studentSemester->delete();
+
+            return redirect()
+                ->route('admin.students.semesters.index')
+                ->with('success', 'Student semester deleted successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Student Semester Delete Error: '.$e->getMessage());
+
+            return redirect()
+                ->back()
+                ->with('error', 'Something went wrong while deleting the student semester.');
+        }
     }
 }

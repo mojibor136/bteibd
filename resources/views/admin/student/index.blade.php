@@ -11,7 +11,7 @@
             <div class="flex flex-row gap-2 mt-3 md:mt-0 w-full md:w-auto items-start sm:items-center">
                 <a href="{{ route('admin.students.create') }}"
                     class="flex items-center gap-2 h-10 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow font-medium transition-all duration-200">
-                    <i class="ri-add-line text-lg"></i> Course Student
+                    <i class="ri-add-line text-lg"></i> Create Student
                 </a>
             </div>
         </div>
@@ -65,8 +65,8 @@
                             <td class="px-4 py-3 whitespace-nowrap">
                                 <div class="flex gap-2 items-center">
                                     <div class="w-10 h-10 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
-                                        @if ($data->photo)
-                                            <img src="{{ asset('storage/' . $data->photo) }}" alt="Photo"
+                                        @if ($data->profile_photo)
+                                            <img src="{{ asset($data->profile_photo) }}" alt="Photo"
                                                 class="w-full h-full object-cover">
                                         @else
                                             <i

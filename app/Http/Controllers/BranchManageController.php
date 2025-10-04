@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class BranchManageController extends Controller
 {
@@ -42,81 +39,65 @@ class BranchManageController extends Controller
     public function store(Request $request)
     {
         try {
-            try {
-                $validated = $request->validate([
-                    'instituteName' => 'required|string|max:255',
-                    'directorName' => 'required|string|max:255',
-                    'fatherName' => 'required|string|max:255',
-                    'motherName' => 'required|string|max:255',
-                    'email' => 'required|email|unique:users,email',
-                    'mobileNumber' => 'required|string|regex:/^01[3-9]\d{8}$/',
-                    'address' => 'required|string|max:500',
-                    'postOffice' => 'required|string|max:255',
-                    'upazila' => 'required|string|max:255',
-                    'district' => 'required|string|max:255',
-                    'username' => 'required|string|unique:users,username',
-                    'password' => 'required|string|min:4',
-                    'directorPhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-                    'institutePhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-                    'nationalIdPhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-                    'signaturePhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-                ]);
-            } catch (ValidationException $e) {
-                \Log::error('Validation failed', ['errors' => $e->errors()]);
+            $validated = $request->validate([
+                'instituteName' => 'required|string|max:255',
+                'directorName' => 'required|string|max:255',
+                'fatherName' => 'required|string|max:255',
+                'motherName' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'mobileNumber' => 'required|string|regex:/^01[3-9]\d{8}$/',
+                'address' => 'required|string|max:500',
+                'postOffice' => 'required|string|max:255',
+                'upazila' => 'required|string|max:255',
+                'district' => 'required|string|max:255',
+                'username' => 'required|string|unique:users,username',
+                'password' => 'required|string|min:4',
+                'directorPhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'institutePhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'nationalIdPhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'signaturePhoto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            ]);
 
-                return back()->withErrors($e->errors())->withInput();
-            }
+            $images = [
+                'director_photo' => 'directorPhoto',
+                'institute_photo' => 'institutePhoto',
+                'national_id_photo' => 'nationalIdPhoto',
+                'signature_photo' => 'signaturePhoto',
+            ];
 
-            $images = ['directorPhoto', 'institutePhoto', 'nationalIdPhoto', 'signaturePhoto'];
             $paths = [];
-
-            foreach ($images as $img) {
-                try {
-                    if ($request->hasFile($img)) {
-                        $file = $request->file($img);
-                        $filename = time().'_'.$file->getClientOriginalName();
-                        $file->move(public_path('uploads'), $filename);
-                        $paths[$img] = 'uploads/'.$filename;
-                    } else {
-                        throw new \Exception("$img file not found");
-                    }
-                } catch (\Exception $e) {
-                    \Log::error('Image upload failed', ['image' => $img, 'error' => $e->getMessage()]);
-
-                    return back()->withErrors(["$img" => "$img file not found"])->withInput();
+            foreach ($images as $dbField => $formField) {
+                if ($request->hasFile($formField)) {
+                    $file = $request->file($formField);
+                    $filename = time().'_'.$file->getClientOriginalName();
+                    $file->move(public_path('uploads'), $filename);
+                    $paths[$dbField] = 'uploads/'.$filename;
                 }
             }
 
-            try {
-                $user = User::create([
-                    'institute_name' => $request->instituteName,
-                    'director_name' => $request->directorName,
-                    'father_name' => $request->fatherName,
-                    'mother_name' => $request->motherName,
-                    'email' => $request->email,
-                    'mobile_number' => $request->mobileNumber,
-                    'address' => $request->address,
-                    'post_office' => $request->postOffice,
-                    'upazila' => $request->upazila,
-                    'district' => $request->district,
-                    'username' => $request->username,
-                    'status' => 'inactive',
-                    'password' => bcrypt($request->password),
-                    'director_photo' => $paths['directorPhoto'],
-                    'institute_photo' => $paths['institutePhoto'],
-                    'national_id_photo' => $paths['nationalIdPhoto'],
-                    'signature_photo' => $paths['signaturePhoto'],
-                ]);
-            } catch (\Exception $e) {
-                \Log::error('User creation failed', ['error' => $e->getMessage()]);
+            User::create([
+                'institute_name' => $request->instituteName,
+                'director_name' => $request->directorName,
+                'father_name' => $request->fatherName,
+                'mother_name' => $request->motherName,
+                'email' => $request->email,
+                'mobile_number' => $request->mobileNumber,
+                'address' => $request->address,
+                'post_office' => $request->postOffice,
+                'upazila' => $request->upazila,
+                'district' => $request->district,
+                'username' => $request->username,
+                'status' => 'inactive',
+                'password' => bcrypt($request->password),
+                'director_photo' => $paths['director_photo'] ?? null,
+                'institute_photo' => $paths['institute_photo'] ?? null,
+                'national_id_photo' => $paths['national_id_photo'] ?? null,
+                'signature_photo' => $paths['signature_photo'] ?? null,
+            ]);
 
-                return back()->withErrors(['user' => 'User creation failed: '.$e->getMessage()])->withInput();
-            }
-
-            return redirect()->route('admin.branches.index')->with('success', 'Registration successful. Please wait for admin approval.');
-
+            return redirect()->route('admin.branches.index')->with('success', 'Branch created successfully.');
         } catch (\Exception $e) {
-            \Log::error('Unexpected error', ['error' => $e->getMessage()]);
+            Log::error('Branch store failed', ['error' => $e->getMessage()]);
 
             return back()->withErrors(['error' => 'Something went wrong: '.$e->getMessage()])->withInput();
         }
@@ -152,16 +133,22 @@ class BranchManageController extends Controller
             'signaturePhoto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $images = ['directorPhoto', 'institutePhoto', 'nationalIdPhoto', 'signaturePhoto'];
-        foreach ($images as $img) {
-            if ($request->hasFile($img)) {
-                if ($user->$img && file_exists(public_path($user->$img))) {
-                    unlink(public_path($user->$img));
+        $images = [
+            'director_photo' => 'directorPhoto',
+            'institute_photo' => 'institutePhoto',
+            'national_id_photo' => 'nationalIdPhoto',
+            'signature_photo' => 'signaturePhoto',
+        ];
+
+        foreach ($images as $dbField => $formField) {
+            if ($request->hasFile($formField)) {
+                if ($user->$dbField && file_exists(public_path($user->$dbField))) {
+                    unlink(public_path($user->$dbField));
                 }
-                $file = $request->file($img);
+                $file = $request->file($formField);
                 $filename = time().'_'.$file->getClientOriginalName();
                 $file->move(public_path('uploads'), $filename);
-                $user->$img = 'uploads/'.$filename;
+                $user->$dbField = 'uploads/'.$filename;
             }
         }
 
@@ -183,7 +170,7 @@ class BranchManageController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.branches.index')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.branches.index')->with('success', 'Branch updated successfully.');
     }
 
     public function destroy($id)
@@ -199,7 +186,7 @@ class BranchManageController extends Controller
 
         $user->delete();
 
-        return redirect()->route('admin.branches.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('admin.branches.index')->with('success', 'Branch deleted successfully.');
     }
 
     public function toggleStatus($id)
@@ -214,6 +201,7 @@ class BranchManageController extends Controller
     public function show($id)
     {
         $branch = User::findOrFail($id);
+
         return view('admin.branch.show', compact('branch'));
     }
 }
