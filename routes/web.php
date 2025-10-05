@@ -38,7 +38,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::controller(AdminController::class)->group(function () {
             Route::get('/dashboard', 'dashboard')->name('dashboard');
             Route::get('/account', 'account')->name('account');
+            Route::post('/account/store' , 'accountStore')->name('account.store');
             Route::get('/settings/general', 'general')->name('settings.general');
+            Route::post('/settings/store' , 'settingStore')->name('setting.store');
+            Route::get('/payment/request/approved', 'PaymentApproved')->name('payment.request.approved');
+            Route::get('/payment/request/pending', 'PaymentRequest')->name('payment.request.pending');
         });
 
         // Branch CRUD
@@ -136,6 +140,8 @@ Route::prefix('branch')->name('branch.')->group(function () {
             Route::put('/students/{id}', 'update')->name('students.update');
             Route::get('/account', 'account')->name('account');
             Route::get('/pricing', 'pricing')->name('pricing');
+            Route::get('/payment/request/approved', 'PaymentApproved')->name('payment.request.approved');
+            Route::get('/payment/request/pending', 'PaymentRequest')->name('payment.request.pending');
         });
     });
 });

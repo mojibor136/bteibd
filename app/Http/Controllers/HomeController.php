@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Course;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -11,12 +13,16 @@ class HomeController extends Controller
 
     public function course()
     {
-        return view('course');
+        $courses = Course::all();
+
+        return view('course' , compact('courses'));
     }
 
-    public function branche()
+    public function branch()
     {
-        return view('branche');
+        $user = User::all();
+
+        return view('branche' , compact('user'));
     }
 
     public function result()

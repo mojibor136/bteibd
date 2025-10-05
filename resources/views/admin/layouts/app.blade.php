@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
+    @php
+        $favicon = $setting->fav_icon;
+    @endphp
+    @if ($favicon && file_exists(public_path($favicon)))
+        <link rel="icon" href="{{ asset($favicon) }}" type="image/png">
+    @endif
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/your-app/dist/app.js"></script>
@@ -70,17 +76,17 @@
         }
     </style>
 </head>
+@include('error.error')
 
 <body class="bg-white text-gray-200">
     <div class="flex flex-col h-screen relative">
         <!-- Header -->
         <div class="header w-full bg-[#2a2f45] z-10 flex items-center fixed top-0 left-0 right-0 print:hidden">
-            <div class="md:h-[70px] h-[60px] w-full py-3 md:px-6 px-3 relative">
+            <div class="md:h-[70px] h-[60px] w-full py-3 md:px-6 px-3 relative flex items-center">
                 <div class="flex justify-between w-full items-center">
                     <div class="logo flex flex-row gap-16 hidden md:block">
                         <div class="flex flex-row gap-2 items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrJnPgM1lxrkE9LnFWYeFeMR7SxdsecVyKFA&s"
-                                alt="Logo" class="w-44 h-auto" />
+                            <img src="{{ asset($setting->side_logo) }}" alt="Logo" class="w-44 h-auto" />
                         </div>
                     </div>
                     <i id="menuBtn" class="ri-menu-line md:hidden block text-white text-xl font-medium"></i>
@@ -95,7 +101,7 @@
                         </div>
                         <i class="ri-moon-line text-white/80 cursor-pointer hover:text-white text-[21px]"></i>
                         <div id="profile_menu_btn" class="flex items-center flex-row gap-2 cursor-pointer">
-                            <img src="" alt="{{ auth()->guard('admin')->user()->name }}"
+                            <img src="{{ asset($setting->fav_icon) }}" alt="{{ auth()->guard('admin')->user()->name }}"
                                 class="w-10 h-10 rounded-full">
                             <span class="text-white/80 text-[15px]">{{ auth()->guard('admin')->user()->name }}</span>
                             <i class="ri-arrow-down-s-line text-white/80"></i>
@@ -137,7 +143,7 @@
                             <a href="{{ route('admin.dashboard') }}"
                                 class="mb-1 flex items-center pl-4 py-2.5 rounded
             {{ request()->routeIs('admin.dashboard') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                <i class="ri-home-4-line mr-2"></i>
+                                <i class="ri-dashboard-3-line mr-2 text-blue-400"></i>
                                 <span class="text-[15px]">Dashboard & Overview</span>
                             </a>
                         </li>
@@ -145,25 +151,26 @@
                         <!-- Branch Management -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="branch">
-                                <i class="ri-building-4-line mr-2"></i>
+                                <i class="ri-building-4-line mr-2 text-indigo-400"></i>
                                 <span class="text-[15px]">Branch Management</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.branches.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.branches.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Branches
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.branches.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-list-unordered mr-2 text-gray-400"></i>All Branches
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.branches.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.branches.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-add-box-line mr-2"></i>Add New Branch
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.branches.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-add-circle-line mr-2 text-green-400"></i>Add New Branch
                                     </a>
                                 </li>
                             </ul>
@@ -172,25 +179,26 @@
                         <!-- Student Management -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="student">
-                                <i class="ri-user-3-line mr-2"></i>
+                                <i class="ri-user-3-line mr-2 text-yellow-400"></i>
                                 <span class="text-[15px]">Student Management</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.students.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.students.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Students
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.students.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-file-list-3-line mr-2 text-gray-400"></i>All Students
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.students.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.students.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-user-add-line mr-2"></i>Add New Student
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.students.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-user-add-line mr-2 text-green-400"></i>Add New Student
                                     </a>
                                 </li>
                             </ul>
@@ -199,25 +207,26 @@
                         <!-- Semester Management -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="semester">
-                                <i class="ri-calendar-2-line mr-2"></i>
+                                <i class="ri-calendar-2-line mr-2 text-purple-400"></i>
                                 <span class="text-[15px]">Semester Management</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.semesters.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.semesters.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Semesters
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.semesters.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-file-list-3-line mr-2 text-gray-400"></i>All Semesters
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.semesters.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.semesters.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-add-box-line mr-2"></i>Add Semester
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.semesters.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-add-box-line mr-2 text-green-400"></i>Add Semester
                                     </a>
                                 </li>
                             </ul>
@@ -226,25 +235,26 @@
                         <!-- Course Management -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="course">
-                                <i class="ri-book-2-line mr-2"></i>
+                                <i class="ri-book-2-line mr-2 text-orange-400"></i>
                                 <span class="text-[15px]">Course Management</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.courses.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.courses.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Courses
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.courses.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-list-check mr-2 text-gray-400"></i>All Courses
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.courses.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.courses.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-add-box-line mr-2"></i>Add Course
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                    {{ request()->routeIs('admin.courses.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-add-circle-line mr-2 text-green-400"></i>Add Course
                                     </a>
                                 </li>
                             </ul>
@@ -253,48 +263,81 @@
                         <!-- Student Semester Management -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+        hover:bg-[#3b3f5c] rounded submenu-toggle transition-all duration-200"
                                 data-menu-key="studentSemester">
-                                <i class="ri-calendar-check-line mr-2"></i>
+                                <i class="ri-calendar-check-line mr-2 text-sky-400"></i>
                                 <span class="text-[15px]">Student Semesters</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
+
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.students.semesters.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Student Semesters
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.students.semesters.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
+                                        <i class="ri-file-list-3-line mr-2 text-gray-400"></i>
+                                        All Student Semesters
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.students.semesters.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-add-box-line mr-2"></i>Add Student Semester
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.students.semesters.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
+                                        <i class="ri-add-circle-line mr-2 text-green-400"></i>
+                                        Add Student Semester
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
-                        <!-- Student Course Management -->
+                        <!-- Student Grade/Marks -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="studentCourse">
-                                <i class="ri-book-open-line mr-2"></i>
+                                <i class="ri-award-line mr-2 text-pink-400"></i>
                                 <span class="text-[15px]">Student Grade/Marks</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.students.mark.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Student Marks
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-file-list-3-line mr-2 text-gray-400"></i>All Student Marks
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.students.mark.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-add-box-line mr-2"></i>Add Student Marks
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-add-box-line mr-2 text-green-400"></i>Add Student Marks
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Payment Request -->
+                        <li class="group">
+                            <a href="#"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                data-menu-key="payment">
+                                <i class="ri-exchange-dollar-line mr-2 text-emerald-400"></i>
+                                <span class="text-[15px]">Payment Request</span>
+                                <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
+                            </a>
+                            <ul class="submenu pl-2 bg-[#2a2f45]">
+                                <li>
+                                    <a href="{{ route('admin.payment.request.approved') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-check-double-line mr-2 text-green-400"></i>Approved
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.payment.request.pending') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-time-line mr-2 text-yellow-400"></i>Pending
                                     </a>
                                 </li>
                             </ul>
@@ -303,56 +346,24 @@
                         <!-- Pricing Management -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="pricing">
-                                <i class="ri-money-dollar-circle-line mr-2"></i>
+                                <i class="ri-money-dollar-circle-line mr-2 text-teal-400"></i>
                                 <span class="text-[15px]">Pricing Management</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.pricing.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.pricing.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Pricing
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-list-check mr-2 text-gray-400"></i>All Pricing
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.pricing.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.pricing.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-add-box-line mr-2"></i>Add Pricing
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- Reports & Analytics -->
-                        <li class="group">
-                            <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
-                                data-menu-key="reports">
-                                <i class="ri-bar-chart-line mr-2"></i>
-                                <span class="text-[15px]">Reports & Analytics</span>
-                                <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
-                            </a>
-                            <ul class="submenu pl-2 bg-[#2a2f45]">
-                                <li>
-                                    <a href="{{ route('admin.reports.students') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-file-paper-line mr-2"></i>Student Reports
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.reports.cgpa') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-pie-chart-line mr-2"></i>CGPA Analysis
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('admin.reports.enrollment') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-line-chart-line mr-2"></i>Enrollment Trend
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-add-box-line mr-2 text-green-400"></i>Add Pricing
                                     </a>
                                 </li>
                             </ul>
@@ -361,24 +372,24 @@
                         <!-- Settings -->
                         <li class="group">
                             <a href="#"
-                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white 
+            hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="settings">
-                                <i class="ri-settings-3-line mr-2"></i>
+                                <i class="ri-settings-3-line mr-2 text-gray-400"></i>
                                 <span class="text-[15px]">Advance Settings</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.account') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('admin.account') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-user-settings-line mr-2"></i>Account Settings
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-user-settings-line mr-2 text-blue-400"></i>Account Settings
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.settings.general') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-global-line mr-2"></i>General Settings
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        <i class="ri-global-line mr-2 text-purple-400"></i>General Settings
                                     </a>
                                 </li>
                             </ul>

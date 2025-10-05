@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
+    @php
+        $favicon = $setting->fav_icon;
+    @endphp
+    @if ($favicon && file_exists(public_path($favicon)))
+        <link rel="icon" href="{{ asset($favicon) }}" type="image/png">
+    @endif
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/your-app/dist/app.js"></script>
@@ -79,8 +85,7 @@
                 <div class="flex justify-between w-full items-center">
                     <div class="logo flex flex-row gap-16 hidden md:block">
                         <div class="flex flex-row gap-2 items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrJnPgM1lxrkE9LnFWYeFeMR7SxdsecVyKFA&s"
-                                alt="Logo" class="w-44 h-auto" />
+                            <img src="{{ asset($setting->side_logo) }}" alt="Logo" class="w-44 h-auto" />
                         </div>
                     </div>
                     <i id="menuBtn" class="ri-menu-line md:hidden block text-white text-xl font-medium"></i>
@@ -135,9 +140,9 @@
                         <!-- Dashboard -->
                         <li class="group">
                             <a href="{{ route('branch.dashboard') }}"
-                                class="mb-1 flex items-center pl-4 py-2.5 rounded
-           {{ request()->routeIs('branch.dashboard') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                <i class="ri-home-4-line mr-2"></i>
+                                class="mb-1 flex items-center pl-4 py-2.5 rounded transition
+            {{ request()->routeIs('branch.dashboard') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                <i class="ri-dashboard-2-line mr-2 text-sky-400"></i>
                                 <span class="text-[15px]">Dashboard & Overview</span>
                             </a>
                         </li>
@@ -147,61 +152,118 @@
                             <a href="#"
                                 class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="student">
-                                <i class="ri-user-3-line mr-2"></i>
+                                <i class="ri-team-line mr-2 text-emerald-400"></i>
                                 <span class="text-[15px]">Student Management</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('branch.students.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('branch.students.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>All Students
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.students.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-file-list-3-line mr-2 text-blue-400"></i>All Students
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('branch.students.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('branch.students.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-user-add-line mr-2"></i>Add New Student
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.students.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-user-add-line mr-2 text-purple-400"></i>Add New Student
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('branch.students.pending') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('branch.students.pending') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-time-line mr-2"></i>Pending Students
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.students.pending') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-time-line mr-2 text-yellow-400"></i>Pending Students
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('branch.students.approved') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('branch.students.approved') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-checkbox-circle-line mr-2"></i>Approved Students
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.students.approved') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-checkbox-circle-line mr-2 text-green-400"></i>Approved Students
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
-                        <!-- Reports / Analytics -->
+                        <!-- Student Semesters -->
                         <li class="group">
                             <a href="#"
                                 class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
-                                data-menu-key="reports">
-                                <i class="ri-bar-chart-line mr-2"></i>
-                                <span class="text-[15px]">Reports & Analytics</span>
+                                data-menu-key="studentSemester">
+                                <i class="ri-calendar-event-line mr-2 text-cyan-400"></i>
+                                <span class="text-[15px]">Student Semesters</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('branch.students.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-file-paper-line mr-2"></i>Student Reports
+                                    <a href="{{ route('admin.students.semesters.index') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('admin.students.semesters.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-list-unordered mr-2 text-blue-400"></i>All Student Semesters
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-pie-chart-line mr-2"></i>CGPA Analysis
+                                    <a href="{{ route('admin.students.semesters.create') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('admin.students.semesters.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-add-line mr-2 text-indigo-400"></i>Add Student Semester
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Student Marks -->
+                        <li class="group">
+                            <a href="#"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                data-menu-key="studentCourse">
+                                <i class="ri-graduation-cap-line mr-2 text-orange-400"></i>
+                                <span class="text-[15px]">Student Grade / Marks</span>
+                                <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
+                            </a>
+                            <ul class="submenu pl-2 bg-[#2a2f45]">
+                                <li>
+                                    <a href="{{ route('admin.students.mark.index') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('admin.students.mark.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-bar-chart-2-line mr-2 text-teal-400"></i>All Student Marks
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.students.mark.create') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('admin.students.mark.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-pencil-line mr-2 text-pink-400"></i>Add Student Marks
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Payment Request -->
+                        <li class="group">
+                            <a href="#"
+                                class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
+                                data-menu-key="payment">
+                                <i class="ri-exchange-dollar-line mr-2 text-[#00b894]"></i>
+                                <span class="text-[15px]">Payment Request</span>
+                                <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
+                            </a>
+                            <ul class="submenu pl-2 bg-[#2a2f45]">
+                                <li>
+                                    <a href="{{ route('branch.payment.request.approved') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.payment.request.approved') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-check-double-line mr-2 text-green-400"></i>Approved
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('branch.payment.request.pending') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.payment.request.pending') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-time-line mr-2 text-yellow-400"></i>Pending
                                     </a>
                                 </li>
                             </ul>
@@ -212,41 +274,42 @@
                             <a href="#"
                                 class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="pricing">
-                                <i class="ri-price-tag-3-line mr-2"></i>
+                                <i class="ri-price-tag-3-line mr-2 text-fuchsia-400"></i>
                                 <span class="text-[15px]">Pricing & Analysis</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('branch.pricing') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-               {{ request()->routeIs('branch.pricing') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-file-list-3-line mr-2"></i>View Pricing
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.pricing') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-bar-chart-box-line mr-2 text-purple-400"></i>View Pricing
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
-                        <!-- Account / Settings -->
+                        <!-- Settings -->
                         <li class="group">
                             <a href="#"
                                 class="mb-1 flex items-center pl-4 py-2.5 text-gray-300 hover:text-white hover:bg-[#3b3f5c] rounded submenu-toggle"
                                 data-menu-key="settings">
-                                <i class="ri-settings-3-line mr-2"></i>
+                                <i class="ri-settings-3-line mr-2 text-gray-400"></i>
                                 <span class="text-[15px]">Advance Settings</span>
                                 <i class="ri-arrow-down-s-line ml-auto mr-4"></i>
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('branch.account') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded
-                   {{ request()->routeIs('branch.account') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
-                                        <i class="ri-user-settings-line mr-2"></i>Account Settings
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded transition
+                    {{ request()->routeIs('branch.account') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                                        <i class="ri-user-settings-line mr-2 text-blue-400"></i>Account Settings
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="flex items-center py-2 pl-6 text-[15px] rounded">
-                                        <i class="ri-global-line mr-2"></i>General Settings
+                                    <a href="#"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded text-gray-300 hover:text-white hover:bg-[#3b3f5c] transition">
+                                        <i class="ri-global-line mr-2 text-orange-400"></i>General Settings
                                     </a>
                                 </li>
                             </ul>

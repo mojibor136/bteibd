@@ -7,7 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Bangladesh Technical Education Institute</title>
+    @php
+        $favicon = $setting->fav_icon;
+    @endphp
+    @if ($favicon && file_exists(public_path($favicon)))
+        <link rel="icon" href="{{ asset($favicon) }}" type="image/png">
+    @endif
+    <title>{{ $setting->meta_title ?? 'Bangladesh Technical Education Institute' }}</title>
+    @if (!empty($setting->meta_desc))
+        <meta name="description" content="{{ $setting->meta_desc }}">
+    @endif
+    @if (!empty($setting->meta_tag) && is_array($setting->meta_tag))
+        <meta name="keywords" content="{{ implode(', ', $setting->meta_tag) }}">
+    @endif
 </head>
 
 <body>
