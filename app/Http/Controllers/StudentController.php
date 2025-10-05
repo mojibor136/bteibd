@@ -168,6 +168,22 @@ class StudentController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $student = Student::with([
+                'semesters.semester',
+                'marks',
+            ])->findOrFail($id);
+
+            return view('admin.student.show', compact('student'));
+        } catch (\Exception $e) {
+            \Log::error('Student View Error: '.$e->getMessage());
+
+            return redirect()->back()->with('error', 'Failed to load student data.');
+        }
+    }
+
     public function studentMark(Request $request)
     {
         try {

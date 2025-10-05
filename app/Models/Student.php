@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     protected $fillable = [
-        'author_id',       
-        'author_role',       
+        'author_id',
+        'author_role',
         'name',
         'father_name',
         'mother_name',
@@ -22,10 +22,20 @@ class Student extends Model
         'status',
         'course_name',
         'cgpa_result',
-        'profile_photo',    
+        'profile_photo',
     ];
 
     protected $casts = [
-        'date_of_birth' => 'date', 
+        'date_of_birth' => 'date',
     ];
+
+    public function semesters()
+    {
+        return $this->hasMany(StudentSemester::class)->with('semester');
+    }
+
+    public function marks()
+    {
+        return $this->hasMany(StudentCourse::class);
+    }
 }

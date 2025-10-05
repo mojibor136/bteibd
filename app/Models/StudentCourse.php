@@ -14,7 +14,7 @@ class StudentCourse extends Model
         'total',
         'full_mark',
         'cgpa',
-        'grade'
+        'grade',
     ];
 
     public function student()
