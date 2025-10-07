@@ -22,6 +22,8 @@
     @endif
 </head>
 
+@stack('scripts')
+
 <body>
     @include('error.error')
 

@@ -19,6 +19,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/course', 'course')->name('course');
     Route::get('/branch', 'branch')->name('branch');
     Route::get('/result', 'result')->name('result');
+    Route::get('/student/search' , 'search')->name('student.search');
 });
 
 // =======================

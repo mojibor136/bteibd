@@ -134,28 +134,75 @@
         </div>
     </div>
 
-    <div class="container  mx-auto px-4 py-4">
+    <div class="container mx-auto px-4 py-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-blue-950 rounded-xl w-full p-6">
+            <!-- Card 1 -->
+            <div class="bg-blue-950 rounded-xl w-full p-6 text-center">
                 <div class="flex flex-col justify-center items-center mb-4 gap-2">
                     <span class="text-xl font-semibold text-gray-100">প্রতিষ্ঠান চেয়ারম্যান</span>
                     <span class="text-md text-gray-200">মোঃ সামসুল আলম</span>
-                    <img src="https://i.ibb.co/LhXb8PKH/IMG-20250911-WA0050-1.jpg" alt=""
+                    <img src="https://i.ibb.co/LhXb8PKH/IMG-20250911-WA0050-1.jpg" alt="Chairman"
                         class="object-cover h-60 mt-2 rounded-md">
                 </div>
-                <button class="py-2 px-4 w-full rounded-xl bg-indigo-600 text-white">Details</button>
+                <button
+                    class="openModal py-2 px-4 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                    data-name="মোঃ সামসুল আলম" data-img="https://i.ibb.co/LhXb8PKH/IMG-20250911-WA0050-1.jpg"
+                    data-content="প্রিয় শিক্ষার্থী, শিক্ষক ও অভিভাবকমণ্ডলী, কারিগরি শিক্ষা আজকের বিশ্বের অপরিহার্য চাহিদা। উন্নত বিশ্বের সাথে তাল মিলিয়ে আমাদের দেশকে এগিয়ে নিতে হলে দক্ষ জনশক্তি গড়ে তোলা একান্ত জরুরি। শুধুমাত্র সাধারণ শিক্ষার মাধ্যমে নয়, হাতে-কলমে ব্যবহারিক জ্ঞান অর্জনের মাধ্যমেই প্রকৃত শিক্ষা সম্পূর্ণ হয়। আমাদের প্রতিষ্ঠান সেই লক্ষ্যকে সামনে রেখে শিক্ষার্থীদের আধুনিক কারিগরি শিক্ষায় দক্ষ করে তুলতে নিরলস কাজ করে যাচ্ছে। এখানে শিক্ষার্থীরা শুধু বইয়ের জ্ঞান নয়, বাস্তব জীবনে প্রয়োগযোগ্য দক্ষতা অর্জন করছে, যা তাদের আত্মনির্ভরশীল করে তুলবে এবং কর্মসংস্থানের সুযোগ সৃষ্টি করবে। প্রত্যেক শিক্ষার্থী যদি নিজের মেধা, পরিশ্রম এবং সততাকে কাজে লাগায়, তবে তারা কেবল নিজেদের ভবিষ্যৎ উজ্জ্বল করতে পারবে না, বরং দেশের অর্থনৈতিক উন্নয়ন ও সমাজ গঠনে গুরুত্বপূর্ণ ভূমিকা পালন করবে। আমি দৃঢ়ভাবে বিশ্বাস করি, কারিগরি শিক্ষার সঠিক বিস্তার ঘটলে আমাদের তরুণ প্রজন্ম আর বেকার থাকবে না। তারা দক্ষ পেশাজীবী হিসেবে নিজেকে প্রতিষ্ঠিত করবে এবং বাংলাদেশকে একটি উন্নত ও সমৃদ্ধ দেশে রূপান্তরিত করতে সহায়তা করবে। আসুন আমরা সকলে মিলে কারিগরি শিক্ষাকে গ্রহণ করি এবং নিজেদের জীবন ও জাতির অগ্রগতিকে আরও গতিশীল করি। — [মো: শামসুল আলম ] চেয়ারম্যান [বাংলাদেশ কারিগরি শিক্ষা ইনস্টিটিউট ]">
+                    Details
+                </button>
             </div>
-            <div class="bg-blue-950 rounded-xl w-full p-6">
+
+            <!-- Card 2 -->
+            <div class="bg-blue-950 rounded-xl w-full p-6 text-center">
                 <div class="flex flex-col justify-center items-center mb-4 gap-2">
-                    <span class="text-xl font-semibold text-gray-100">প্রতিষ্ঠান চেয়ারম্যান</span>
-                    <span class="text-md text-gray-200">মোঃ সামসুল আলম</span>
-                    <img src="https://i.ibb.co/m5GSTHwY/IMG-20250914-WA0300-2.jpg" alt=""
+                    <span class="text-xl font-semibold text-gray-100">বিশ্বখ্যাত অর্থনীতিবিদ</span>
+                    <span class="text-md text-gray-200">ডঃ মোঃ ইউনুস</span>
+                    <img src="https://i.ibb.co/m5GSTHwY/IMG-20250914-WA0300-2.jpg" alt="Dr Yunus"
                         class="object-cover h-60 mt-2 rounded-md">
                 </div>
-                <button class="py-2 px-4 w-full rounded-xl bg-indigo-600 text-white">Details</button>
+                <button
+                    class="openModal py-2 px-4 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                    data-name="ডঃ মোঃ ইউনুস" data-img="https://i.ibb.co/m5GSTHwY/IMG-20250914-WA0300-2.jpg"
+                    data-content="একজন বিশ্বখ্যাত অর্থনীতিবিদ, সমাজসংস্কারক এবং নোবেল শান্তি পুরস্কারপ্রাপ্ত ব্যক্তিত্ব। তিনি ক্ষুদ্রঋণ ও গ্রামীণ ব্যাংক প্রতিষ্ঠার মাধ্যমে দারিদ্র্য বিমোচন ও নারী ক্ষমতায়নের নতুন দ্বার উন্মোচন করেছেন। তাঁর নেতৃত্বে বাংলাদেশে অর্থনৈতিক উন্নয়নের পাশাপাশি বিশ্ব দরবারে নতুন মর্যাদা অর্জন করেছে। বর্তমানে তিনি বাংলাদেশের অন্তর্বর্তী সরকারের প্রধান হিসেবে দায়িত্ব পালন করছেন। সততা, ন্যায়পরায়ণতা এবং স্বচ্ছতার আদর্শে তিনি দেশকে উন্নত, ন্যায়ভিত্তিক ও মানবিক পথে এগিয়ে নিয়ে যেতে কাজ করছেন। মূল দর্শন: দারিদ্র্যমুক্ত সমাজ গঠন, নারী ও পিছিয়ে পড়া জনগোষ্ঠীর ক্ষমতায়ন, টেকসই উন্নয়ন ও সামাজিক ব্যবসার প্রসার, ন্যায়ভিত্তিক ও স্বচ্ছ শাসন ব্যবস্থা। উল্লেখযোগ্য অর্জন: গ্রামীণ ব্যাংক প্রতিষ্ঠা এবং ক্ষুদ্রঋণ মডেলের বিশ্বব্যাপী প্রসার, নোবেল শান্তি পুরস্কার (২০০৬), জাতিসংঘসহ বিভিন্ন আন্তর্জাতিক সংস্থার সম্মাননা ও পুরস্কার, সামাজিক ব্যবসা ও উদ্ভাবনী অর্থনীতির ধারণা বিশ্বব্যাপী ছড়িয়ে দেওয়া। ড. ইউনুস বিশ্বাস করেন— “দারিদ্র্য মানুষের সৃষ্টি নয়, বরং একটি কৃত্রিম অবস্থা। সুযোগ ও সহায়তা পেলে প্রতিটি মানুষ তার ভাগ্য নিজেই গড়তে সক্ষম।”">
+                    Details
+                </button>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="infoModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-2xl w-full h-[500px] overflow-y-auto text-center relative">
+            <button id="closeModal"
+                class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            <img id="modalImg" src="" alt="Person"
+                class="w-32 h-32 mx-auto rounded-full border-4 border-indigo-500 mb-4 object-cover">
+            <h3 id="modalName" class="text-xl font-bold text-indigo-700 mb-3"></h3>
+            <p id="modalContent" class="text-gray-700 text-justify leading-relaxed whitespace-pre-line"></p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("infoModal");
+        const closeModal = document.getElementById("closeModal");
+        const modalImg = document.getElementById("modalImg");
+        const modalName = document.getElementById("modalName");
+        const modalContent = document.getElementById("modalContent");
+
+        document.querySelectorAll(".openModal").forEach(btn => {
+            btn.addEventListener("click", () => {
+                modalImg.src = btn.dataset.img;
+                modalName.textContent = btn.dataset.name;
+                modalContent.textContent = btn.dataset.content;
+                modal.classList.remove("hidden");
+            });
+        });
+
+        closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+        window.addEventListener("click", e => {
+            if (e.target === modal) modal.classList.add("hidden");
+        });
+    </script>
 
     <div class="container mx-auto px-4 py-4">
         <div class="flex justify-center">
@@ -163,54 +210,125 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
-            <div class="bg-blue-950 rounded-xl w-full p-6">
+            <!-- Card 1 -->
+            <div class="bg-blue-950 rounded-xl w-full p-6 text-center">
                 <div class="flex flex-col justify-center items-center mb-4 gap-2">
                     <span class="text-xl font-semibold text-gray-100">প্রথম স্থান : ২০২০</span>
                     <span class="text-md text-gray-200">মোসাম্মৎ মিম আক্তার</span>
                     <img src="https://i.ibb.co/tS8kFvM/IMG-20250315-WA0110-1.jpg" alt=""
                         class="object-cover h-60 mt-2 border-4 border-indigo-600 rounded-lg">
                 </div>
-                <button class="py-2 px-4 w-full rounded-xl bg-indigo-600 text-white">Details</button>
+                <button
+                    class="openGalleryModal py-2 px-4 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                    data-title="প্রথম স্থান : ২০২০" data-name="মোসাম্মৎ মিম আক্তার"
+                    data-desc="২০২০ সালে ইনস্টিটিউটের প্রথম স্থান অর্জন করে মিম আক্তার সবাইকে গর্বিত করেছেন।"
+                    data-img="https://i.ibb.co/tS8kFvM/IMG-20250315-WA0110-1.jpg">
+                    Details
+                </button>
             </div>
-            <div class="bg-blue-950 rounded-xl w-full p-6">
+
+            <!-- Card 2 -->
+            <div class="bg-blue-950 rounded-xl w-full p-6 text-center">
                 <div class="flex flex-col justify-center items-center mb-4 gap-2">
                     <span class="text-xl font-semibold text-gray-100">দ্বিতীয় স্থান -২০২২</span>
                     <span class="text-md text-gray-200">মো: রেজাউল করিম</span>
                     <img src="https://i.ibb.co/4RJJwTxD/IMG-20250821-WA0071.jpg" alt=""
                         class="object-cover h-60 mt-2 border-4 border-indigo-600 rounded-lg">
                 </div>
-                <button class="py-2 px-4 w-full rounded-xl bg-indigo-600 text-white">Details</button>
+                <button
+                    class="openGalleryModal py-2 px-4 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                    data-title="দ্বিতীয় স্থান -২০২২" data-name="মো: রেজাউল করিম"
+                    data-desc="২০২২ সালে অসাধারণ ফলাফল করে দ্বিতীয় স্থান অর্জন করেন মো: রেজাউল করিম।"
+                    data-img="https://i.ibb.co/4RJJwTxD/IMG-20250821-WA0071.jpg">
+                    Details
+                </button>
             </div>
-            <div class="bg-blue-950 rounded-xl w-full p-6">
+
+            <!-- Card 3 -->
+            <div class="bg-blue-950 rounded-xl w-full p-6 text-center">
                 <div class="flex flex-col justify-center items-center mb-4 gap-2">
                     <span class="text-xl font-semibold text-gray-100">তৃতীয় স্থান -২০২০</span>
                     <span class="text-md text-gray-200">রবিউল শিকদার</span>
                     <img src="https://i.ibb.co/Cs4YKz9z/IMG-20250329-WA0071.jpg" alt=""
                         class="object-cover h-60 mt-2 border-4 border-indigo-600 rounded-lg">
                 </div>
-                <button class="py-2 px-4 w-full rounded-xl bg-indigo-600 text-white">Details</button>
+                <button
+                    class="openGalleryModal py-2 px-4 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                    data-title="তৃতীয় স্থান -২০২০" data-name="রবিউল শিকদার"
+                    data-desc="রবিউল শিকদার ২০২০ সালে তৃতীয় স্থান অর্জন করেন, যা ইনস্টিটিউটের গর্বের বিষয়।"
+                    data-img="https://i.ibb.co/Cs4YKz9z/IMG-20250329-WA0071.jpg">
+                    Details
+                </button>
             </div>
-            <div class="bg-blue-950 rounded-xl w-full p-6">
+
+            <!-- Card 4 -->
+            <div class="bg-blue-950 rounded-xl w-full p-6 text-center">
                 <div class="flex flex-col justify-center items-center mb-4 gap-2">
                     <span class="text-xl font-semibold text-gray-100">প্রতিষ্ঠান চেয়ারম্যান</span>
                     <span class="text-md text-gray-200">মোঃ সামসুল আলম</span>
                     <img src="https://i.ibb.co/m5GSTHwY/IMG-20250914-WA0300-2.jpg" alt=""
                         class="object-cover h-60 mt-2 border-4 border-indigo-600 rounded-lg">
                 </div>
-                <button class="py-2 px-4 w-full rounded-xl bg-indigo-600 text-white">Details</button>
+                <button
+                    class="openGalleryModal py-2 px-4 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300"
+                    data-title="প্রতিষ্ঠান চেয়ারম্যান" data-name="মোঃ সামসুল আলম"
+                    data-desc="মোঃ সামসুল আলম ইনস্টিটিউটের চেয়ারম্যান হিসেবে নেতৃত্ব দিচ্ছেন দীর্ঘদিন ধরে।"
+                    data-img="https://i.ibb.co/m5GSTHwY/IMG-20250914-WA0300-2.jpg">
+                    Details
+                </button>
             </div>
         </div>
     </div>
 
-    <div class="container  mx-auto px-4 py-8">
+    <!-- Modal -->
+    <div id="galleryModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full text-center relative">
+            <button id="closeGalleryModal"
+                class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+            <img id="galleryModalImg" src="" alt="Gallery Image"
+                class="w-40 h-40 mx-auto rounded-xl border-4 border-indigo-500 mb-4 object-cover">
+            <h3 id="galleryModalTitle" class="text-xl font-semibold text-indigo-700 mb-1"></h3>
+            <p id="galleryModalName" class="text-gray-600 text-sm mb-3"></p>
+            <p id="galleryModalDesc" class="text-gray-700 leading-relaxed"></p>
+        </div>
+    </div>
+
+    <script>
+        const galleryModal = document.getElementById("galleryModal");
+        const closeGalleryModal = document.getElementById("closeGalleryModal");
+        const galleryModalTitle = document.getElementById("galleryModalTitle");
+        const galleryModalName = document.getElementById("galleryModalName");
+        const galleryModalDesc = document.getElementById("galleryModalDesc");
+        const galleryModalImg = document.getElementById("galleryModalImg");
+
+        document.querySelectorAll(".openGalleryModal").forEach(btn => {
+            btn.addEventListener("click", () => {
+                galleryModalTitle.textContent = btn.dataset.title;
+                galleryModalName.textContent = btn.dataset.name;
+                galleryModalDesc.textContent = btn.dataset.desc;
+                galleryModalImg.src = btn.dataset.img;
+                galleryModal.classList.remove("hidden");
+            });
+        });
+
+        closeGalleryModal.addEventListener("click", () => {
+            galleryModal.classList.add("hidden");
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === galleryModal) galleryModal.classList.add("hidden");
+        });
+    </script>
+
+    <div class="container mx-auto px-4 py-8">
         <div class="flex justify-center">
             <h2 class="text-3xl font-bold text-indigo-700">Student Testimonials</h2>
         </div>
 
-        <div class="w-full mt-8 flex flex-col">
+        <div class="w-full mt-8 flex flex-col space-y-6">
+            <!-- Single Testimonial -->
             <div
-                class="mb-6 p-6 rounded-xl shadow-2xl bg-blue-950 md:p-8 backdrop-blur-sm border-4 border-gray-200 
-                    transition-all duration-500 hover:shadow-xl">
+                class="p-6 rounded-xl shadow-2xl bg-blue-950 backdrop-blur-sm border-4 border-gray-200 transition-all duration-500 hover:shadow-xl">
                 <div class="flex items-start space-x-4">
                     <img src="https://i.ibb.co/QtdWcpt/IMG-20250827-WA0087.jpg" alt="মোহাম্মদ সোহেল রানা"
                         class="w-16 h-16 object-cover rounded-full border-2 border-indigo-500">
@@ -218,90 +336,129 @@
                     <div class="flex-1">
                         <h3 class="text-lg font-semibold text-white">মোহাম্মদ সোহেল রানা</h3>
                         <p class="text-indigo-200 text-sm mb-2">শিক্ষার্থী - ২০২০</p>
-
                         <blockquote class="text-indigo-100 italic border-l-2 border-indigo-400 pl-4">
-                            “এই ইনস্টিটিউটে প্রশিক্ষণ নিয়ে আমার পেশাগত দক্ষতা অনেক বৃদ্ধি পেয়েছে। শিক্ষকরা খুবই সহায়ক
-                            এবং বাস্তব অভিজ্ঞতার উপর ভিত্তি করে শেখান।” <br>
-                            <span class="text-gray-300">English: "My professional skills improved significantly after
-                                training
-                                at this institute. The instructors are very supportive and focus on practical,
-                                real-world experience."</span>
+                            " Electrical Installation & Maintenance "আমি Electrical কোর্স সম্পন্ন করার পর দ্রুত চাকরির সুযোগ
+                            পেয়েছি। এখানকার প্রশিক্ষকরা আন্তরিকভাবে সবকিছু শিখিয়েছেন। এখন আমি একটি নামকরা প্রতিষ্ঠানে
+                            টেকনিশিয়ান হিসেবে কাজ করছি।" English: "After completing the Electrical course, I quickly secured
+                            a job. The instructors taught everything with great sincerity. Today, I am working as a
+                            technician in a reputed organization.""
                         </blockquote>
                     </div>
                 </div>
 
                 <div class="mt-4">
                     <button
-                        class="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 
-                               transition duration-300">
+                        class="openModal px-4 py-2 rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 transition duration-300"
+                        data-name="মোহাম্মদ সোহেল রানা" data-year="শিক্ষার্থী - ২০২০"
+                        data-story="Electrical Installation & Maintenance আমি Electrical কোর্স সম্পন্ন করার পর দ্রুত চাকরির সুযোগ পেয়েছি। এখানকার প্রশিক্ষকরা আন্তরিকভাবে সবকিছু শিখিয়েছেন। এখন আমি একটি নামকরা প্রতিষ্ঠানে টেকনিশিয়ান হিসেবে কাজ করছি। English: After completing the Electrical course, I quickly secured a job. The instructors taught everything with great sincerity. Today, I am working as a technician in a reputed organization."
+                        data-img="https://i.ibb.co/QtdWcpt/IMG-20250827-WA0087.jpg">
                         Read Full Story
                     </button>
                 </div>
             </div>
 
             <div
-                class="mb-6 p-6 rounded-xl shadow-2xl bg-blue-950 md:p-8 backdrop-blur-sm border-4 border-gray-200 
-                    transition-all duration-500 hover:shadow-xl">
+                class="p-6 rounded-xl shadow-2xl bg-blue-950 backdrop-blur-sm border-4 border-gray-200 transition-all duration-500 hover:shadow-xl">
                 <div class="flex items-start space-x-4">
-                    <img src="https://i.ibb.co/JR2KTby5/IMG-20250813-WA0220.jpg" alt="মোহাম্মদ সোহেল রানা"
+                    <img src="https://i.ibb.co/v9z8kmC/t4.jpg" alt="মোসাম্মদ আফসানা আক্তার"
+                        class="w-16 h-16 object-cover rounded-full border-2 border-indigo-500">
+
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-white">মোসাম্মদ আফসানা আক্তার</h3>
+                        <p class="text-indigo-200 text-sm mb-2">শিক্ষার্থী - ২০২০</p>
+                        <blockquote class="text-indigo-100 italic border-l-2 border-indigo-400 pl-4">
+                            প্রশিক্ষণ শেষে আমার আত্মবিশ্বাস অনেক বেড়েছে। এখানে শেখানো দক্ষতা আমাকে কর্মজগতে এগিয়ে নিতে
+                            সাহায্য করেছে।" ইংরেজি: "My confidence increased tremendously after the training. The skills I
+                            learned here helped me advance in my career
+                        </blockquote>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button
+                        class="openModal px-4 py-2 rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 transition duration-300"
+                        data-name="মোসাম্মদ আফসানা আক্তার" data-year="শিক্ষার্থী - ২০২০"
+                        data-story="প্রশিক্ষণ শেষে আমার আত্মবিশ্বাস অনেক বেড়েছে। এখানে শেখানো দক্ষতা আমাকে কর্মজগতে এগিয়ে নিতে সাহায্য করেছে। ইংরেজি: My confidence increased tremendously after the training. The skills I learned here helped me advance in my career"
+                        data-img="https://i.ibb.co/v9z8kmC/t4.jpg">
+                        Read Full Story
+                    </button>
+                </div>
+            </div>
+
+            <!-- Another Testimonial -->
+            <div
+                class="p-6 rounded-xl shadow-2xl bg-blue-950 backdrop-blur-sm border-4 border-gray-200 transition-all duration-500 hover:shadow-xl">
+                <div class="flex items-start space-x-4">
+                    <img src="https://i.ibb.co/JR2KTby5/IMG-20250813-WA0220.jpg" alt="মোহাম্মদ রফিক"
                         class="w-16 h-16 object-cover rounded-full border-2 border-indigo-500">
 
                     <div class="flex-1">
                         <h3 class="text-lg font-semibold text-white">মোহাম্মদ রফিক</h3>
                         <p class="text-indigo-200 text-sm mb-2">শিক্ষার্থী - ২০২০</p>
-
                         <blockquote class="text-indigo-100 italic border-l-2 border-indigo-400 pl-4">
-                            “এই ইনস্টিটিউটে প্রশিক্ষণ নিয়ে আমার পেশাগত দক্ষতা অনেক বৃদ্ধি পেয়েছে। শিক্ষকরা খুবই সহায়ক
-                            এবং বাস্তব অভিজ্ঞতার উপর ভিত্তি করে শেখান।” <br>
-                            <span class="text-gray-300">English: "My professional skills improved significantly after
-                                training
-                                at this institute. The instructors are very supportive and focus on practical,
-                                real-world experience."</span>
+                            "এই ইনস্টিটিউটে প্রশিক্ষণ নিয়ে আমার পেশাগত দক্ষতা অনেক বৃদ্ধি পেয়েছে। শিক্ষকরা খুবই সহায়ক এবং
+                            বাস্তব অভিজ্ঞতার উপর ভিত্তি করে শেখান।" ইংরেজি: "My professional skills improved significantly
+                            after training at this institute. The instructors are very supportive and focus on practical,
+                            real-world experience.""
+                            "বাংলা: আমাদের ট্রেনিং শেষ করার পর একটি আন্তর্জাতিক সফটওয়্যার কোম্পানিতে সিনিয়র ডেভেলপার পদে
+                            যোগদান করেছেন। English: After completing her training, she joined an international software
+                            company as a Senior Developer."
+                            Read Full Story
                         </blockquote>
                     </div>
                 </div>
 
                 <div class="mt-4">
                     <button
-                        class="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 
-                               transition duration-300">
-                        Read Full Story
-                    </button>
-                </div>
-            </div>
-
-            <div
-                class="mb-6 p-6 rounded-xl shadow-2xl bg-blue-950 md:p-8 backdrop-blur-sm border-4 border-gray-200 
-                    transition-all duration-500 hover:shadow-xl">
-                <div class="flex items-start space-x-4">
-                    <img src="https://i.ibb.co/QtdWcpt/IMG-20250827-WA0087.jpg" alt="মোহাম্মদ সোহেল রানা"
-                        class="w-16 h-16 object-cover rounded-full border-2 border-indigo-500">
-
-                    <div class="flex-1">
-                        <h3 class="text-lg font-semibold text-white">মোহাম্মদ সোহেল রানা</h3>
-                        <p class="text-indigo-200 text-sm mb-2">শিক্ষার্থী - ২০২০</p>
-
-                        <blockquote class="text-indigo-100 italic border-l-2 border-indigo-400 pl-4">
-                            “এই ইনস্টিটিউটে প্রশিক্ষণ নিয়ে আমার পেশাগত দক্ষতা অনেক বৃদ্ধি পেয়েছে। শিক্ষকরা খুবই সহায়ক
-                            এবং বাস্তব অভিজ্ঞতার উপর ভিত্তি করে শেখান।” <br>
-                            <span class="text-gray-300">English: "My professional skills improved significantly after
-                                training
-                                at this institute. The instructors are very supportive and focus on practical,
-                                real-world experience."</span>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <div class="mt-4">
-                    <button
-                        class="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 
-                               transition duration-300">
+                        class="openModal px-4 py-2 rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 transition duration-300"
+                        data-name="মোহাম্মদ রফিক" data-year="শিক্ষার্থী - ২০২০"
+                        data-story="এই ইনস্টিটিউটে প্রশিক্ষণ নিয়ে আমার পেশাগত দক্ষতা অনেক বৃদ্ধি পেয়েছে। শিক্ষকরা খুবই সহায়ক এবং বাস্তব অভিজ্ঞতার উপর ভিত্তি করে শেখান। ইংরেজি: My professional skills improved significantly after training at this institute. The instructors are very supportive and focus on practical, real-world experienceবাংলা: আমাদের ট্রেনিং শেষ করার পর একটি আন্তর্জাতিক সফটওয়্যার কোম্পানিতে সিনিয়র ডেভেলপার পদে যোগদান করেছেন। English: After completing her training, she joined an international software company as a Senior Developer.Read Full Story"
+                        data-img="https://i.ibb.co/JR2KTby5/IMG-20250813-WA0220.jpg">
                         Read Full Story
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="storyModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full text-center relative">
+            <button id="closeModal"
+                class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+            <img id="modalImg" src="" alt="Student"
+                class="w-24 h-24 mx-auto rounded-full border-4 border-indigo-500 mb-4">
+            <h3 id="modalName" class="text-xl font-semibold text-indigo-700"></h3>
+            <p id="modalYear" class="text-gray-500 text-sm mb-4"></p>
+            <p id="modalStory" class="text-gray-700 leading-relaxed"></p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("storyModal");
+        const closeModal = document.getElementById("closeModal");
+        const modalName = document.getElementById("modalName");
+        const modalYear = document.getElementById("modalYear");
+        const modalStory = document.getElementById("modalStory");
+        const modalImg = document.getElementById("modalImg");
+
+        document.querySelectorAll(".openModal").forEach(btn => {
+            btn.addEventListener("click", () => {
+                modalName.textContent = btn.dataset.name;
+                modalYear.textContent = btn.dataset.year;
+                modalStory.textContent = btn.dataset.story;
+                modalImg.src = btn.dataset.img;
+                modal.classList.remove("hidden");
+            });
+        });
+
+        closeModal.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) modal.classList.add("hidden");
+        });
+    </script>
 
     <div class="container mx-auto px-4 pb-4">
         <div class="bg-blue-950 text-white rounded-lg p-6 text-center">
@@ -434,72 +591,27 @@
 
     <div class="overflow-hidden">
         <div id="card-slider" class="flex gap-4 my-6 px-4">
-            <div class="bg-[#3a7a7a] rounded-lg p-6 flex-shrink-0 w-80 flex flex-col space-y-4">
-                <div class="text-yellow-400 text-sm flex space-x-1">
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-line text-yellow-400"></i>
-                </div>
-                <p class="text-xs text-white">
-                    "কারিগরি ইনস্টিটিউটের ট্রেনিং প্রোগ্রামগুলো অত্যন্ত কার্যকর। এখানে শেখা স্কিলগুলো আমার চাকরিতে অনেক
-                    সাহায্য করেছে।"
-                </p>
-                <div class="flex items-center space-x-3 mt-auto">
-                    <img alt="Portrait" class="rounded-full" height="40" width="40"
-                        src="https://i.ibb.co.com/MkmP4sSz/ab58a43f-0f4e-4ca2-871d-b64e431be425.jpg">
-                    <div>
-                        <p class="text-white text-sm font-semibold">মহিমা খাতুন</p>
-                        <p class="text-gray-300 text-xs">Student</p>
+            @foreach ($student as $data)
+                <div class="bg-[#3a7a7a] rounded-lg p-6 flex-shrink-0 w-80 flex flex-col space-y-4">
+                    <div class="text-yellow-400 text-sm flex space-x-1">
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-line text-yellow-400"></i>
+                    </div>
+                    <p class="text-xs text-white">
+                        {{ $data->institute_name }}
+                    </p>
+                    <div class="flex items-center space-x-3 mt-auto">
+                        <img alt="Portrait" class="rounded-full w-10 h-10" src="{{ asset($data->profile_photo) }}">
+                        <div>
+                            <p class="text-white text-sm font-semibold">{{ $data->name }}</p>
+                            <p class="text-gray-300 text-xs">Student</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="bg-[#3a7a7a] rounded-lg p-6 flex-shrink-0 w-80 flex flex-col space-y-4">
-                <div class="text-yellow-400 text-sm flex space-x-1">
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-line text-yellow-400"></i>
-                </div>
-                <p class="text-xs text-white">
-                    "কারিগরি ইনস্টিটিউটের ট্রেনিং প্রোগ্রামগুলো অত্যন্ত কার্যকর। এখানে শেখা স্কিলগুলো আমার চাকরিতে অনেক
-                    সাহায্য করেছে।"
-                </p>
-                <div class="flex items-center space-x-3 mt-auto">
-                    <img alt="Portrait" class="rounded-full" height="40" width="40"
-                        src="https://i.ibb.co.com/MkmP4sSz/ab58a43f-0f4e-4ca2-871d-b64e431be425.jpg">
-                    <div>
-                        <p class="text-white text-sm font-semibold">মহিমা খাতুন</p>
-                        <p class="text-gray-300 text-xs">Student</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="bg-[#3a7a7a] rounded-lg p-6 flex-shrink-0 w-80 flex flex-col space-y-4">
-                <div class="text-yellow-400 text-sm flex space-x-1">
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-fill text-yellow-400"></i>
-                    <i class="ri-star-line text-yellow-400"></i>
-                </div>
-                <p class="text-xs text-white">
-                    "কারিগরি ইনস্টিটিউটের ট্রেনিং প্রোগ্রামগুলো অত্যন্ত কার্যকর। এখানে শেখা স্কিলগুলো আমার চাকরিতে অনেক
-                    সাহায্য করেছে।"
-                </p>
-                <div class="flex items-center space-x-3 mt-auto">
-                    <img alt="Portrait" class="rounded-full" height="40" width="40"
-                        src="https://i.ibb.co.com/MkmP4sSz/ab58a43f-0f4e-4ca2-871d-b64e431be425.jpg">
-                    <div>
-                        <p class="text-white text-sm font-semibold">মহিমা খাতুন</p>
-                        <p class="text-gray-300 text-xs">Student</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
