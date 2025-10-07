@@ -304,13 +304,15 @@
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.students.mark.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.students.mark.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-file-list-3-line mr-2 text-gray-400"></i>All Student Marks
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.students.mark.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.students.mark.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-add-box-line mr-2 text-green-400"></i>Add Student Marks
                                     </a>
                                 </li>
@@ -329,14 +331,16 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('admin.payment.request.approved') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                    <a href="{{ route('admin.payment.approved') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.payment.approved') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-check-double-line mr-2 text-green-400"></i>Approved
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.payment.request.pending') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                    <a href="{{ route('admin.payment.pending') }}"
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.payment.pending') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-time-line mr-2 text-yellow-400"></i>Pending
                                     </a>
                                 </li>
@@ -356,13 +360,15 @@
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.pricing.index') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.pricing.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-list-check mr-2 text-gray-400"></i>All Pricing
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.pricing.create') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.pricing.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-add-box-line mr-2 text-green-400"></i>Add Pricing
                                     </a>
                                 </li>
@@ -382,13 +388,15 @@
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
                                     <a href="{{ route('admin.account') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.account') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-user-settings-line mr-2 text-blue-400"></i>Account Settings
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin.settings.general') }}"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded hover:bg-[#3b3f5c] hover:text-white transition">
+                                        class="flex items-center py-2 pl-6 text-[15px] rounded 
+                {{ request()->routeIs('admin.settings.general') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:bg-[#3b3f5c] hover:text-white transition' }}">
                                         <i class="ri-global-line mr-2 text-purple-400"></i>General Settings
                                     </a>
                                 </li>

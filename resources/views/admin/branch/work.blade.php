@@ -1,23 +1,17 @@
-@extends('branch.layouts.app')
-@section('title', 'Student Management')
+@extends('admin.layouts.app')
+@section('title', 'Branch Student')
 @section('content')
     @include('error.error')
     <div class="w-full mb-4">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b rounded-md mb-4">
             <div class="flex flex-col gap-2 w-full md:w-2/3">
-                <h1 class="text-xl font-bold text-gray-800">Student Management</h1>
+                <h1 class="text-xl font-bold text-gray-800">Branch Student</h1>
                 <p class="text-sm text-gray-500 ml-1">Manage your student and their transactions efficiently</p>
-            </div>
-            <div class="flex flex-row gap-2 mt-3 md:mt-0 w-full md:w-auto items-start sm:items-center">
-                <a href="{{ route('admin.students.create') }}"
-                    class="flex items-center gap-2 h-10 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md shadow font-medium transition-all duration-200">
-                    <i class="ri-add-line text-lg"></i> Create Student
-                </a>
             </div>
         </div>
 
         <!-- Search + Filter -->
-        <form method="GET" action="{{ route('admin.students.index') }}"
+        <form method="GET" action="{{ route('admin.branches.work' , $user->id) }}"
             class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 sm:gap-4">
             <div class="flex flex-col sm:flex-row w-full sm:w-2/3 gap-2">
                 <div class="relative w-full sm:w-1/2">
@@ -39,7 +33,7 @@
                     <i class="ri-search-line mr-1"></i> Search
                 </button>
             </div>
-            <a href="{{ route('admin.students.index') }}"
+            <a href="{{ route('admin.branches.work', $user->id) }}"
                 class="flex justify-center items-center px-4 py-2 h-10 md:w-auto w-full rounded-md bg-red-600 hover:bg-red-700 text-white font-medium transition-all duration-150 mt-2 sm:mt-0">
                 Reset
             </a>

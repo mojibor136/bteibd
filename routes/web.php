@@ -5,6 +5,7 @@ use App\Http\Controllers\Branch\BranchController;
 use App\Http\Controllers\BranchManageController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
@@ -38,18 +39,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::controller(AdminController::class)->group(function () {
             Route::get('/dashboard', 'dashboard')->name('dashboard');
             Route::get('/account', 'account')->name('account');
-            Route::post('/account/store' , 'accountStore')->name('account.store');
+            Route::post('/account/store', 'accountStore')->name('account.store');
             Route::get('/settings/general', 'general')->name('settings.general');
-            Route::post('/settings/store' , 'settingStore')->name('setting.store');
-            Route::get('/payment/request/approved', 'PaymentApproved')->name('payment.request.approved');
-            Route::get('/payment/request/pending', 'PaymentRequest')->name('payment.request.pending');
+            Route::post('/settings/store', 'settingStore')->name('setting.store');
         });
 
         // Branch CRUD
         Route::controller(BranchManageController::class)->group(function () {
             Route::get('/branches', 'index')->name('branches.index');
             Route::get('/branches/show/{id}', 'show')->name('branches.show');
-            Route::get('/branches/work', 'work')->name('branches.work');
+            Route::get('/branches/work/{id}', 'work')->name('branches.work');
             Route::patch('/branches/status/{id}', 'toggleStatus')->name('branches.status');
             Route::get('/branches/create', 'create')->name('branches.create');
             Route::post('/branches', 'store')->name('branches.store');
@@ -68,10 +67,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::put('/students/{id}/update', 'update')->name('students.update');
             Route::delete('/students/{id}', 'destroy')->name('students.delete');
             Route::patch('/students/status/{id}', 'toggleStatus')->name('students.status');
-            // Reports
-            Route::get('/reports/students', 'reportsStudents')->name('reports.students');
-            Route::get('/reports/cgpa', 'reportsCgpa')->name('reports.cgpa');
-            Route::get('/reports/enrollment', 'reportsEnrollment')->name('reports.enrollment');
 
             Route::get('/student/mark', 'studentMark')->name('students.mark.index');
             Route::get('/student/mark/create', 'studentMarkCreate')->name('students.mark.create');
@@ -115,6 +110,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::delete('/pricing/{id}', 'destroy')->name('pricing.delete');
             Route::patch('/pricing/status/{id}', 'toggleStatus')->name('pricing.status');
         });
+
+        // PaymentController CRUD
+        Route::controller(PaymentController::class)->group(function () {
+            Route::get('/payment/pending', 'adminPaymentPending')->name('payment.pending');
+            Route::get('/payment/approved', 'adminPaymentApproved')->name('payment.approved');
+            Route::patch('/payment/status/{id}', 'toggleStatus')->name('payment.status');
+        });
     });
 });
 
@@ -138,11 +140,27 @@ Route::prefix('branch')->name('branch.')->group(function () {
             Route::post('/students', 'store')->name('students.store');
             Route::get('/students/{id}/edit', 'edit')->name('students.edit');
             Route::put('/students/{id}', 'update')->name('students.update');
+            Route::get('/students/{id}/show', 'show')->name('students.show');
             Route::get('/account', 'account')->name('account');
-            Route::get('/pricing', 'pricing')->name('pricing');
-            Route::get('/payment/request/approved', 'PaymentApproved')->name('payment.request.approved');
-            Route::get('/payment/request/pending', 'PaymentRequest')->name('payment.request.pending');
+            Route::post('/account/store', 'accountStore')->name('account.store');
+            Route::get('/pricing', 'pricing')->name('pricing.index');
+            Route::get('/student/mark', 'studentMark')->name('students.mark.index');
+            Route::get('/student/mark/create', 'studentMarkCreate')->name('students.mark.create');
+            Route::post('/student/mark/store', 'studentMarkStore')->name('students.mark.store');
+            Route::delete('/student/mark/{id}', 'studentMarkDestroy')->name('students.mark.delete');
+            Route::get('/student/semesters', 'studentSemester')->name('students.semesters.index');
+            Route::delete('/student/semesters/{id}', 'studentSemesterDestroy')->name('students.semesters.delete');
+            Route::get('/student/semesters/create', 'studentSemesterCreate')->name('students.semesters.create');
+            Route::post('/student/semesters/store', 'studentSemesterStore')->name('students.semesters.store');
         });
+    });
+
+    // PaymentController CRUD
+    Route::controller(PaymentController::class)->group(function () {
+        Route::get('/payment/pending', 'branchPaymentPending')->name('payment.pending');
+        Route::get('/payment/approved', 'branchPaymentApproved')->name('payment.approved');
+        Route::get('/payment/request', 'branchPaymentRequest')->name('payment.request');
+        Route::post('/payment/store', 'branchPaymentStore')->name('payment.store');
     });
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,37 +14,17 @@ class AdminController extends Controller
     public function dashboard()
     {
         $totalStudents = Student::count();
-        $pendingStudents = Student::where('status', 'pending')->count();
-        $approvedStudents = Student::where('status', 'approved')->count();
-        $averageCGPA = Student::avg('cgpa_result');
+        $pendingStudents = Student::where('status', 'Inactive')->count();
+        $approvedStudents = Student::where('status', 'Active')->count();
 
-        $enrollmentMonths = [];
-        $enrollmentCounts = [];
-        for ($i = 5; $i >= 0; $i--) {
-            $month = now()->subMonths($i)->format('M Y');
-            $enrollmentMonths[] = $month;
-            $enrollmentCounts[] = Student::whereMonth('created_at', now()->subMonths($i)->month)->count();
-        }
+        $totalBranches = User::count();
+        $activeBranches = User::where('status', 'active')->count();
+        $inactiveBranches = User::where('status', 'inactive')->count();
 
-        $cgpaLabels = ['<2.5', '2.5-3.0', '3.0-3.5', '3.5-4.0', '4.0'];
-        $cgpaCounts = [];
-        foreach ($cgpaLabels as $label) {
-            if ($label == '<2.5') {
-                $cgpaCounts[] = Student::where('cgpa_result', '<', 2.5)->count();
-            } elseif ($label == '2.5-3.0') {
-                $cgpaCounts[] = Student::whereBetween('cgpa_result', [2.5, 3.0])->count();
-            } elseif ($label == '3.0-3.5') {
-                $cgpaCounts[] = Student::whereBetween('cgpa_result', [3.0, 3.5])->count();
-            } elseif ($label == '3.5-4.0') {
-                $cgpaCounts[] = Student::whereBetween('cgpa_result', [3.5, 4.0])->count();
-            } else {
-                $cgpaCounts[] = Student::where('cgpa_result', 4.0)->count();
-            }
-        }
+        $student = Student::paginate(100);
 
         return view('admin.dashboard', compact(
-            'totalStudents', 'pendingStudents', 'approvedStudents', 'averageCGPA',
-            'enrollmentMonths', 'enrollmentCounts', 'cgpaLabels', 'cgpaCounts'
+           'student' , 'totalStudents', 'pendingStudents', 'approvedStudents', 'totalBranches', 'activeBranches', 'inactiveBranches'
         ));
     }
 

@@ -77,6 +77,8 @@
     </style>
 </head>
 
+@include('error.error')
+
 <body class="bg-white text-gray-200">
     <div class="flex flex-col h-screen relative">
         <!-- Header -->
@@ -199,16 +201,16 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('admin.students.semesters.index') }}"
+                                    <a href="{{ route('branch.students.semesters.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('admin.students.semesters.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.students.semesters.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-list-unordered mr-2 text-blue-400"></i>All Student Semesters
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.students.semesters.create') }}"
+                                    <a href="{{ route('branch.students.semesters.create') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('admin.students.semesters.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.students.semesters.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-add-line mr-2 text-indigo-400"></i>Add Student Semester
                                     </a>
                                 </li>
@@ -226,16 +228,16 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('admin.students.mark.index') }}"
+                                    <a href="{{ route('branch.students.mark.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('admin.students.mark.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.students.mark.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-bar-chart-2-line mr-2 text-teal-400"></i>All Student Marks
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.students.mark.create') }}"
+                                    <a href="{{ route('branch.students.mark.create') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('admin.students.mark.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.students.mark.create') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-pencil-line mr-2 text-pink-400"></i>Add Student Marks
                                     </a>
                                 </li>
@@ -253,16 +255,16 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('branch.payment.request.approved') }}"
+                                    <a href="{{ route('branch.payment.approved') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('branch.payment.request.approved') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.payment.approved') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-check-double-line mr-2 text-green-400"></i>Approved
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('branch.payment.request.pending') }}"
+                                    <a href="{{ route('branch.payment.pending') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('branch.payment.request.pending') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.payment.pending') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-time-line mr-2 text-yellow-400"></i>Pending
                                     </a>
                                 </li>
@@ -280,9 +282,9 @@
                             </a>
                             <ul class="submenu pl-2 bg-[#2a2f45]">
                                 <li>
-                                    <a href="{{ route('branch.pricing') }}"
+                                    <a href="{{ route('branch.pricing.index') }}"
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
-                    {{ request()->routeIs('branch.pricing') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
+                    {{ request()->routeIs('branch.pricing.index') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-bar-chart-box-line mr-2 text-purple-400"></i>View Pricing
                                     </a>
                                 </li>
@@ -304,12 +306,6 @@
                                         class="flex items-center py-2 pl-6 text-[15px] rounded transition
                     {{ request()->routeIs('branch.account') ? 'bg-[#3b3f5c] text-white' : 'text-gray-300 hover:text-white hover:bg-[#3b3f5c]' }}">
                                         <i class="ri-user-settings-line mr-2 text-blue-400"></i>Account Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center py-2 pl-6 text-[15px] rounded text-gray-300 hover:text-white hover:bg-[#3b3f5c] transition">
-                                        <i class="ri-global-line mr-2 text-orange-400"></i>General Settings
                                     </a>
                                 </li>
                             </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -34,6 +35,14 @@ class BranchManageController extends Controller
     public function create()
     {
         return view('admin.branch.create');
+    }
+
+    public function work($id){
+        $user = User::find($id);
+
+        $student = Student::where('author_id' , $user->id)->where('author_role' , 'branch')->paginate(100);
+
+        return view('admin.branch.work' , compact('user' , 'student'));
     }
 
     public function store(Request $request)

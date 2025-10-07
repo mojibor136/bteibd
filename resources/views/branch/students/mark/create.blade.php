@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('branch.layouts.app')
 @section('title', 'Add New Student Mark')
 @section('content')
     @include('error.error')
@@ -7,19 +7,19 @@
         <div class="flex flex-col bg-white shadow rounded md:p-6 p-4 md:gap-1 gap-3">
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">Add Student Course Mark</h2>
-                <a href="{{ route('admin.students.mark.index') }}"
+                <a href="{{ route('branch.students.mark.index') }}"
                     class="block bg-teal-500 text-white px-4 py-2.5 rounded text-sm font-medium hover:bg-teal-600 transition">
                     All Student Marks
                 </a>
             </div>
             <div class="text-gray-600 text-sm">
-                <a href="{{ route('admin.dashboard') }}" class="text-blue-600 hover:underline">Home</a> /
+                <a href="{{ route('branch.dashboard') }}" class="text-blue-600 hover:underline">Home</a> /
                 <span>Student Mark / Create</span>
             </div>
         </div>
 
         <div class="w-full bg-white rounded shadow px-6 py-6">
-            <form action="{{ route('admin.students.mark.store') }}" method="POST"
+            <form action="{{ route('branch.students.mark.store') }}" method="POST"
                 class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @csrf
 
